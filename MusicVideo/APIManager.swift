@@ -18,20 +18,40 @@ class APIManager
         let url = NSURL(string:urlString)!
         let task = session.dataTaskWithURL(url)
         {
-        // passer les données au thread principal CallBack
-        
           (data,response,error) -> Void  in
-            dispatch_async(dispatch_get_main_queue())
-            {
+            // passer les données au thread principal CallBack
+            
                 if error != nil
                 {
-                    completion(result: (error!.localizedDescription))
+                    dispatch_async(dispatch_get_main_queue())
+                    {
+            completion(result: (error!.localizedDescription))
+                    }
                 }
                 else
                 {
-                    completion(result: "NSURL Successeful")
-                    print(data)
+                    do
+                    {
+    if let json =  try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as? [String: AnyObject]{
+                    print(json)
+                    let priority = DISPATCH_QUEUE_PRIORITY_HIGH
+                    dispatch_async(dispatch_get_global_queue(priority,0))
+                    {
+                      dispatch_async(dispatch_get_main_queue())
+                        {
+                            completion(result:"JSON Serialisation successful")
+                        }
+                    }
                 }
+                    }
+                    catch
+                    {
+                        dispatch_async(dispatch_get_main_queue())
+                        {
+                            completion(result:"Erreur in JSON Serialisation ")
+                        }
+                    }
+                    // end Json serialisation
             }
         }
         task.resume()
