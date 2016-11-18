@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E8DFF531DDE3BBF005F9CF8 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8DFF521DDE3BBF005F9CF8 /* APIManager.swift */; };
+		0E8DFF561DDE531A005F9CF8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E8DFF551DDE531A005F9CF8 /* MapKit.framework */; };
 		0EFC363B1DD9085100834088 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFC363A1DD9085100834088 /* AppDelegate.swift */; };
 		0EFC363D1DD9085100834088 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFC363C1DD9085100834088 /* ViewController.swift */; };
 		0EFC36401DD9085100834088 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EFC363E1DD9085100834088 /* Main.storyboard */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E8DFF521DDE3BBF005F9CF8 /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		0E8DFF551DDE531A005F9CF8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		0EFC36371DD9085100834088 /* MusicVideo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicVideo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EFC363A1DD9085100834088 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EFC363C1DD9085100834088 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E8DFF561DDE531A005F9CF8 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +82,7 @@
 		0E8DFF4A1DDE316B005F9CF8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0E8DFF521DDE3BBF005F9CF8 /* APIManager.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -108,6 +114,14 @@
 			name = SupportingFiles;
 			sourceTree = "<group>";
 		};
+		0E8DFF541DDE531A005F9CF8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0E8DFF551DDE531A005F9CF8 /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		0EFC362E1DD9085000834088 = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +129,7 @@
 				0EFC364E1DD9085100834088 /* MusicVideoTests */,
 				0EFC36591DD9085100834088 /* MusicVideoUITests */,
 				0EFC36381DD9085100834088 /* Products */,
+				0E8DFF541DDE531A005F9CF8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -227,6 +242,14 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 3X72U4HH78;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					0EFC364A1DD9085100834088 = {
 						CreatedOnToolsVersion = 8.0;
@@ -294,6 +317,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E8DFF531DDE3BBF005F9CF8 /* APIManager.swift in Sources */,
 				0EFC363D1DD9085100834088 /* ViewController.swift in Sources */,
 				0EFC363B1DD9085100834088 /* AppDelegate.swift in Sources */,
 			);
@@ -452,7 +476,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com-softs4mobiles.com.MusicVideo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -465,7 +489,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com-softs4mobiles.com.MusicVideo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
