@@ -10,7 +10,7 @@ import Foundation
 
 class APIManager
 {
-    func loadData (urlString:String, completion:(result:String)->())
+    func loadData (urlString:String, completion:(result:[Videos])->())
     {
         let config = NSURLSessionConfiguration.ephemeralSessionConfiguration()
         
@@ -25,21 +25,31 @@ class APIManager
                 {
                     dispatch_async(dispatch_get_main_queue())
                     {
-            completion(result: (error!.localizedDescription))
+            print(error!.localizedDescription)
                     }
                 }
                 else
                 {
                     do
                     {
-    if let json =  try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as? JSONDictionnary{
-                    print(json)
+    if let json =  try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as? JSONDictionnary,
+        feed = json["feed"] as? JSONDictionnary,
+        Entries = feed["entry"] as? JSONArray
+       {
+        
+        var videos = [Videos]()
+        for entry in Entries{
+            let entry = Videos(data:entry as! JSONDictionnary)
+            videos.append(entry)
+        }
+                    let i = videos.count
+                    print("le nombre total de vidéos est \(i)")
                     let priority = DISPATCH_QUEUE_PRIORITY_HIGH
                     dispatch_async(dispatch_get_global_queue(priority,0))
                     {
                       dispatch_async(dispatch_get_main_queue())
                         {
-                            completion(result:"JSON Serialisation successful")
+                            completion(result:videos)
                         }
                     }
                 }
@@ -48,7 +58,7 @@ class APIManager
                     {
                         dispatch_async(dispatch_get_main_queue())
                         {
-                            completion(result:"Erreur in JSON Serialisation ")
+                            print("Erreur in JSON Serialisation ")
                         }
                     }
                     // end Json serialisation

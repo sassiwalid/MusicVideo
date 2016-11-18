@@ -9,16 +9,21 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+var videos = [Videos]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Appel de API
         let api = APIManager()
         api.loadData("https://itunes.apple.com/us/rss/topmusicvideos/limit=10/json",completion:didloadData)
     }
-    func didloadData(result:String)
+    func didloadData(videos:[Videos] )
     {
-        print(result)
+        self.videos = videos
+        for item in videos
+        {
+            print("le nom est \(item.vName)")
+        }
     }
 
     
