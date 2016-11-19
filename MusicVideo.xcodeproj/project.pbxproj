@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E7F461D1DE0DA3C00926C3F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E7F461C1DE0DA3C00926C3F /* Reachability.m */; };
 		0E8DFF531DDE3BBF005F9CF8 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8DFF521DDE3BBF005F9CF8 /* APIManager.swift */; };
 		0E8DFF561DDE531A005F9CF8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E8DFF551DDE531A005F9CF8 /* MapKit.framework */; };
 		0EED7DFC1DDF3487002BDC91 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EED7DFB1DDF3487002BDC91 /* Constants.swift */; };
@@ -38,6 +39,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E7F461A1DE0DA3C00926C3F /* MusicVideo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MusicVideo-Bridging-Header.h"; sourceTree = "<group>"; };
+		0E7F461B1DE0DA3C00926C3F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		0E7F461C1DE0DA3C00926C3F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		0E8DFF521DDE3BBF005F9CF8 /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		0E8DFF551DDE531A005F9CF8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		0EED7DFB1DDF3487002BDC91 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -135,6 +139,16 @@
 			name = Utils;
 			sourceTree = "<group>";
 		};
+		0EED7E041DDFA82B002BDC91 /* Obj-c */ = {
+			isa = PBXGroup;
+			children = (
+				0E7F461B1DE0DA3C00926C3F /* Reachability.h */,
+				0E7F461C1DE0DA3C00926C3F /* Reachability.m */,
+				0E7F461A1DE0DA3C00926C3F /* MusicVideo-Bridging-Header.h */,
+			);
+			name = "Obj-c";
+			sourceTree = "<group>";
+		};
 		0EFC362E1DD9085000834088 = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +173,7 @@
 		0EFC36391DD9085100834088 /* MusicVideo */ = {
 			isa = PBXGroup;
 			children = (
+				0EED7E041DDFA82B002BDC91 /* Obj-c */,
 				0EED7DFA1DDF3460002BDC91 /* Utils */,
 				0E8DFF4D1DDE3250005F9CF8 /* SupportingFiles */,
 				0E8DFF4A1DDE316B005F9CF8 /* Model */,
@@ -255,6 +270,7 @@
 					0EFC36361DD9085000834088 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 3X72U4HH78;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -335,6 +351,7 @@
 				0EFC363D1DD9085100834088 /* ViewController.swift in Sources */,
 				0EED7DFE1DDF36A1002BDC91 /* MusicVideo.swift in Sources */,
 				0EFC363B1DD9085100834088 /* AppDelegate.swift in Sources */,
+				0E7F461D1DE0DA3C00926C3F /* Reachability.m in Sources */,
 				0EED7DFC1DDF3487002BDC91 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -487,11 +504,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 3X72U4HH78;
 				INFOPLIST_FILE = MusicVideo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com-softs4mobiles.com.MusicVideo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MusicVideo/MusicVideo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
@@ -500,11 +520,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 3X72U4HH78;
 				INFOPLIST_FILE = MusicVideo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com-softs4mobiles.com.MusicVideo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MusicVideo/MusicVideo-Bridging-Header.h";
 				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
