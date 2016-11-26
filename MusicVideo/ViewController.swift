@@ -9,13 +9,17 @@
 import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegate {
-    @IBOutlet weak var Label: UILabel!
     @IBOutlet weak var TableView: UITableView!
-var videos = [Videos]()
+    // tableau des vidéos
+    var videos = [Videos]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "ReachabiltyStatusChanged", name: "ReachStatusChanged", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.ReachabiltyStatusChanged), name: "ReachStatusChanged", object: nil)
         ReachabiltyStatusChanged()        // Appel de API
+    }
+    func runAPI()
+    {
         let api = APIManager()
         api.loadData("https://itunes.apple.com/us/rss/topmusicvideos/limit=50/json",completion:didloadData)
     }
@@ -28,12 +32,25 @@ var videos = [Videos]()
     {
         switch reachabilityStatus {
         case NOACCESS : view.backgroundColor = UIColor.redColor()
-        Label.text = "Pas de connexion Internet"
-        case WIFI : view.backgroundColor = UIColor.greenColor()
-        Label.text = "Wifi Existant "
-        case WWAN :view.backgroundColor = UIColor.yellowColor()
-        Label.text = "Réseau cellulaire existant"
-        default : return
+        print(reachabilityStatus)
+        let alert = UIAlertController(title:"Pas de connexion Internet", message: "Verifiez votre connexion ", preferredStyle: .Alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style:.Default){
+            action -> () in print("Cancel")
+            }
+        let deleteAction = UIAlertAction(title: "Delete", style:.Destructive){
+            action -> () in print("Delete")
+            }
+        let okAction = UIAlertAction(title: "OK", style:.Default){
+            action -> () in print("OK")
+            }
+            alert.addAction(okAction)
+            alert.addAction(cancelAction)
+            alert.addAction(deleteAction)
+            self.presentViewController(alert, animated: true, completion: nil)
+        default:
+            print(reachabilityStatus)
+            runAPI()
+            
         }
     }
     // appel de destructeur et destruction de l'observer
@@ -49,10 +66,9 @@ var videos = [Videos]()
         return videos.count
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
-        let video = videos[indexPath.row]
-        cell.textLabel?.text = ("\(indexPath.row + 1)")
-        cell.detailTextLabel?.text = video.vName
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! CustomCell
+        cell.video = videos[indexPath.row]
+
         return cell
     }
    

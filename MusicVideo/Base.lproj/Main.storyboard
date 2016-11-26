@@ -3,10 +3,11 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Music Video APP-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MusicVideo" customModuleProvider="target" sceneMemberID="viewController">
@@ -15,40 +16,46 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ci3-pZ-6ll">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WVB-mz-BLc">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="142" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WVB-mz-BLc">
+                                <frame key="frameInset" width="320" height="575"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="hqm-kM-NXb" detailTextLabel="WxC-sC-muA" style="IBUITableViewCellStyleSubtitle" id="5QD-HQ-o0L">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="Xhr-te-VXx" customClass="CustomCell" customModule="MusicVideo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="320" height="142"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5QD-HQ-o0L" id="Bac-pY-Dox">
-                                            <frame key="frameInset" width="375" height="43"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xhr-te-VXx" id="q0O-Oo-hg1">
+                                            <frame key="frameInset" width="320" height="141"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hqm-kM-NXb">
-                                                    <frame key="frameInset" minX="15" minY="4" width="34" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WxC-sC-muA">
-                                                    <frame key="frameInset" minX="15" minY="25" width="44" height="15"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <nil key="textColor"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pZW-qs-1Qh"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qb4-Qz-fL8">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="119" id="CCf-XL-gaT"/>
+                                                        <constraint firstAttribute="height" constant="21" id="p3q-C8-atj"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="pZW-qs-1Qh" firstAttribute="leading" secondItem="q0O-Oo-hg1" secondAttribute="leadingMargin" constant="9" id="8Ts-zz-Vnh"/>
+                                                <constraint firstItem="qb4-Qz-fL8" firstAttribute="leading" secondItem="pZW-qs-1Qh" secondAttribute="trailing" constant="8" symbolic="YES" id="NAx-sS-D6p"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="qb4-Qz-fL8" secondAttribute="trailing" constant="60" id="Zpc-OV-4we"/>
+                                                <constraint firstItem="pZW-qs-1Qh" firstAttribute="top" secondItem="q0O-Oo-hg1" secondAttribute="topMargin" constant="-2" id="d2e-OH-cnI"/>
+                                                <constraint firstItem="qb4-Qz-fL8" firstAttribute="top" secondItem="q0O-Oo-hg1" secondAttribute="topMargin" id="fXn-2y-dhh"/>
+                                                <constraint firstItem="pZW-qs-1Qh" firstAttribute="centerY" secondItem="q0O-Oo-hg1" secondAttribute="centerY" id="gVy-lg-W3Q"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.13949476522842641" green="0.042261667631443477" blue="0.13305498467094529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="myImage" destination="pZW-qs-1Qh" id="hM6-A4-mZU"/>
+                                            <outlet property="name" destination="qb4-Qz-fL8" id="yJt-un-HNB"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -58,35 +65,26 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="ci3-pZ-6ll" secondAttribute="bottom" constant="20" symbolic="YES" id="1fx-Nv-efl"/>
-                            <constraint firstItem="WVB-mz-BLc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="7qx-td-0fB"/>
-                            <constraint firstItem="ci3-pZ-6ll" firstAttribute="top" secondItem="WVB-mz-BLc" secondAttribute="bottom" constant="8" symbolic="YES" id="E73-aA-U4O"/>
-                            <constraint firstItem="WVB-mz-BLc" firstAttribute="leading" secondItem="ci3-pZ-6ll" secondAttribute="leading" id="TJp-3C-du9"/>
-                            <constraint firstItem="WVB-mz-BLc" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="cKW-bY-pUf"/>
-                            <constraint firstItem="WVB-mz-BLc" firstAttribute="trailing" secondItem="ci3-pZ-6ll" secondAttribute="trailing" id="uHG-1G-eXV"/>
-                            <constraint firstAttribute="trailing" secondItem="WVB-mz-BLc" secondAttribute="trailing" id="wXl-Ro-nhb"/>
-                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="g3Q-7o-6iU"/>
+                    <navigationItem key="navigationItem" title="Music Video APP" id="g3Q-7o-6iU"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
-                        <outlet property="Label" destination="ci3-pZ-6ll" id="ph6-gY-hUR"/>
                         <outlet property="TableView" destination="WVB-mz-BLc" id="r9O-Li-rmb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1056.8" y="98.50074962518741"/>
+            <point key="canvasLocation" x="1055.625" y="98.239436619718305"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="avZ-yF-1nt">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wS9-GS-g7v" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="QP3-31-L4y">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="QP3-31-L4y">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.184210292" green="0.55392247090000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

@@ -8,34 +8,37 @@
 
 import UIKit
 var reachability : Reachability?
-var reachabilityStatus = WIFI
+var reachabilityStatus = " "
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var InternetCheck: Reachability?
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+  func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityChanged:", name: kReachabilityChangedNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"checkForReachability:", name: kReachabilityChangedNotification, object: nil);
         InternetCheck = Reachability.reachabilityForInternetConnection()
         InternetCheck?.startNotifier()
         return true
     }
-    func reachabilityChanged(Notification:NSNotification)
+    func reachabilityChanged(notification:NSNotification)
     {
-        reachability = Notification.object as? Reachability
+        reachability = notification.object as? Reachability
         statusChangedWithReachability(reachability!)
     }
     func statusChangedWithReachability (CurrentReachabilityStatus: Reachability)
     {
+
         let networkStatus: NetworkStatus = CurrentReachabilityStatus.currentReachabilityStatus()
         switch networkStatus.rawValue{
         case NotReachable.rawValue : reachabilityStatus = NOACCESS
+        print(reachabilityStatus)
         case ReachableViaWiFi.rawValue: reachabilityStatus = WIFI
+        print(reachabilityStatus)
         case ReachableViaWWAN.rawValue: reachabilityStatus = WWAN
+        print(reachabilityStatus)
         default: return
-            
         }
         NSNotificationCenter.defaultCenter().postNotificationName("ReachStatusChanged", object: nil)
     }
