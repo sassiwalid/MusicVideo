@@ -11,7 +11,7 @@ import UIKit
 class CustomCell: UITableViewCell {
     
     @IBOutlet weak var myImage: UIImageView!
-    
+    @IBOutlet weak var rank: UILabel!
     @IBOutlet weak var name: UILabel!
     var video : Videos?
         {
@@ -22,6 +22,7 @@ class CustomCell: UITableViewCell {
     func updatecell(){
         name.font = UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)
         name.text = video?.vName
+        rank.text = video?.vImid
         if video!.vImageData != nil {
             print("Get Data from Array")
             myImage.image = UIImage(data:video!.vImageData!)
