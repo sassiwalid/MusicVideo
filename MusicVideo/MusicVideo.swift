@@ -94,7 +94,7 @@ class Videos
             
         }
         
-        if let price = data["price"] as? JSONDictionnary,
+        if let price = data["im:price"] as? JSONDictionnary,
             label = price["label"] as? String {
             self._vPrice = label
         }

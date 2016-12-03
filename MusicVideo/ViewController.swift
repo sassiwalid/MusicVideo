@@ -71,7 +71,17 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
 
         return cell
     }
-   
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "GoToDetails"{
+            if let indexpath = TableView.indexPathForSelectedRow{
+                let video = videos[indexpath.row]
+                let dvc = segue.destinationViewController as! DetailsMusicVideoVC
+                dvc.video = video
+            }
+        }
+        
+    }
+
 
 }
 
