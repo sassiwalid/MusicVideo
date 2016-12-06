@@ -27,6 +27,27 @@ class SettingsTVC: UITableViewController {
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SettingsTVC.fontchanged), name: UIContentSizeCategoryDidChangeNotification, object: nil)
         tableView.alwaysBounceVertical = false
+        title = "Settings"
+        touchID.on = NSUserDefaults.standardUserDefaults().boolForKey("SecSetting")
+        if NSUserDefaults.standardUserDefaults().objectForKey("APIcntSetting") != nil {
+        APICnt.text = NSUserDefaults.standardUserDefaults().stringForKey("APIcntSetting")
+        sliderCnt.value = NSUserDefaults.standardUserDefaults().floatForKey("APIcntSetting")
+        }
+    }
+    @IBAction func valueChanged(sender: UISlider) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(Int(sliderCnt.value), forKey: "APIcntSetting")
+        APICnt.text = "\(Int(sliderCnt.value))"
+    }
+    @IBAction func touchIdSec(sender: UISwitch) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if touchID.on{
+            defaults.setBool(touchID.on, forKey: "SecSetting")
+        }
+        else{
+            defaults.setBool(false, forKey: "SecSetting")
+        }
+        
     }
     func fontchanged()
     {
