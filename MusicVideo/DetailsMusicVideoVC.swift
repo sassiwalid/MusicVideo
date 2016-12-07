@@ -7,7 +7,8 @@
 //
 
 import UIKit
-
+import AVFoundation
+import AVKit
 class DetailsMusicVideoVC: UIViewController {
     var video : Videos!
     @IBOutlet weak var Vname: UILabel!
@@ -28,6 +29,16 @@ class DetailsMusicVideoVC: UIViewController {
         else
         {
            Vimage.image = UIImage(named: "img_not_available")  
+        }
+    }
+    @IBAction func playVideo(sender: UIBarButtonItem) {
+        let url = NSURL(string: video.vLinkToiTunes)
+        print(video.vVideoUrl)
+        let player = AVPlayer(URL: url!)
+        let playerViewController = AVPlayerViewController()
+        playerViewController.player = player
+        self.presentViewController(playerViewController, animated: true){
+            playerViewController.player?.play()
         }
     }
 

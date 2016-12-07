@@ -150,7 +150,7 @@ class Videos
         }
         
         if let video = data["link"] as? JSONArray,
-            vURL = video[0] as? JSONDictionnary,
+            vURL = video[1] as? JSONDictionnary,
             vHref = vURL["attributes"]as? JSONDictionnary,
             vVideoUrl = vHref["href"] as? String
         {
