@@ -12,7 +12,7 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
     @IBOutlet weak var TableView: UITableView!
     // tableau des vidéos
     var videos = [Videos]()
-    
+    var limit = 10
     override func viewDidLoad() {
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.ReachabiltyStatusChanged), name: "ReachStatusChanged", object: nil)
@@ -21,7 +21,24 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
     func runAPI()
     {
         let api = APIManager()
-        api.loadData("https://itunes.apple.com/us/rss/topmusicvideos/limit=50/json",completion:didloadData)
+        api.loadData("https://itunes.apple.com/us/rss/topmusicvideos/limit=\(limit)/json",completion:didloadData)
+    }
+    func getAPICnt()
+    {
+        if (NSUserDefaults.standardUserDefaults().objectForKey("APIcntSetting") != nil){
+            let thevalue = NSUserDefaults.standardUserDefaults().objectForKey("APIcntSetting") as! Int
+            limit = thevalue
+        }
+        let Formatter = NSDateFormatter()
+        Formatter.dateFormat = "E, DD MMMM YYYY HH:mm:ss"
+        let refreshDte = Formatter.stringFromDate(NSDate())
+        if #available(iOS 10.0, *) {
+            TableView.refreshControl?.attributedTitle = NSAttributedString(string: "\(refreshDte)")
+        } else {
+            // Fallback on earlier versions
+        }
+        
+        
     }
     func didloadData(videos:[Videos] )
     {
