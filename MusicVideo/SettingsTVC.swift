@@ -33,6 +33,9 @@ class SettingsTVC: UITableViewController {
         APICnt.text = NSUserDefaults.standardUserDefaults().stringForKey("APIcntSetting")
         sliderCnt.value = NSUserDefaults.standardUserDefaults().floatForKey("APIcntSetting")
         }
+        else {
+            sliderCnt.value = 10
+        }
     }
     @IBAction func valueChanged(sender: UISlider) {
         let defaults = NSUserDefaults.standardUserDefaults()

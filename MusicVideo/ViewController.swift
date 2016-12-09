@@ -49,7 +49,7 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
     {
         self.videos = videos
         TableView.reloadData()
-        self.navigationItem.title = "The \(limit) TOP Music Videos"
+        self.navigationItem.title = "The Itunes TOP \(limit) Music Videos"
     }
     func ReachabiltyStatusChanged()
     {
