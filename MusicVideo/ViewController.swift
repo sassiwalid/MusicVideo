@@ -13,13 +13,28 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
     // tableau des vidéos
     var videos = [Videos]()
     var limit = 10
+    var refreshControl: UIRefreshControl!
     override func viewDidLoad() {
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.ReachabiltyStatusChanged), name: "ReachStatusChanged", object: nil)
-        ReachabiltyStatusChanged()        // Appel de API
+        ReachabiltyStatusChanged()        // call for API
+        refreshControl = UIRefreshControl()
+        let Formatter = NSDateFormatter()
+        Formatter.dateFormat = "E, dd MMM yyyy HH:mm:ss"
+        let refreshDte = Formatter.stringFromDate(NSDate())
+        refreshControl.attributedTitle = NSAttributedString(string: refreshDte)
+        refreshControl.addTarget(self, action: #selector(ViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        TableView.addSubview(refreshControl)
+        
+    }
+    func refresh(sender:AnyObject) {
+        // Code to refresh table view
+        refreshControl.endRefreshing()
+        runAPI()
     }
     func runAPI()
     {
+        getAPICnt()
         let api = APIManager()
         api.loadData("https://itunes.apple.com/us/rss/topmusicvideos/limit=\(limit)/json",completion:didloadData)
     }
@@ -29,21 +44,12 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
             let thevalue = NSUserDefaults.standardUserDefaults().objectForKey("APIcntSetting") as! Int
             limit = thevalue
         }
-        let Formatter = NSDateFormatter()
-        Formatter.dateFormat = "E, DD MMMM YYYY HH:mm:ss"
-        let refreshDte = Formatter.stringFromDate(NSDate())
-        if #available(iOS 10.0, *) {
-            TableView.refreshControl?.attributedTitle = NSAttributedString(string: "\(refreshDte)")
-        } else {
-            // Fallback on earlier versions
-        }
-        
-        
     }
     func didloadData(videos:[Videos] )
     {
         self.videos = videos
         TableView.reloadData()
+        self.navigationItem.title = "The \(limit) TOP Music Videos"
     }
     func ReachabiltyStatusChanged()
     {
