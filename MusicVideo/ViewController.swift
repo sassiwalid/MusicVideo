@@ -12,16 +12,38 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
     @IBOutlet weak var TableView: UITableView!
     // tableau des vidéos
     var videos = [Videos]()
-    
+    var limit = 10
+    var refreshControl: UIRefreshControl!
     override func viewDidLoad() {
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.ReachabiltyStatusChanged), name: "ReachStatusChanged", object: nil)
         ReachabiltyStatusChanged()        // Appel de API
+//        refreshControl = UIRefreshControl()
+//        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+//        refreshControl.addTarget(self, action: #selector(ViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+//        TableView.addSubview(refreshControl) // not required when using UITableViewController
+    }
+    func refresh(sender:UIRefreshControl) {
+        // Code to refresh table view
+        refreshControl.endRefreshing()
+        getAPICount()
+    }
+    func getAPICount(){
+        if ((NSUserDefaults.standardUserDefaults().objectForKey("APIcntSetting")) != nil){
+          let thevalue = NSUserDefaults.standardUserDefaults().objectForKey("APIcntSetting") as! Int
+        limit = thevalue
+        }
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "E, dd MMMM YYYY"
+        let refreshDte = formatter.stringFromDate(NSDate())
+        TableView.refreshControl?.attributedTitle = NSAttributedString(string:"\(refreshDte)")
+        
     }
     func runAPI()
     {
+        getAPICount()
         let api = APIManager()
-        api.loadData("https://itunes.apple.com/us/rss/topmusicvideos/limit=50/json",completion:didloadData)
+        api.loadData("https://itunes.apple.com/us/rss/topmusicvideos/limit=\(limit)/json",completion:didloadData)
     }
     func didloadData(videos:[Videos] )
     {
